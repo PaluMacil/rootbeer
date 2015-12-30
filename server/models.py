@@ -26,6 +26,7 @@ class Survey(db.Model):
     __tablename__ = 'surveys'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), unique=True)
+    retakable = db.Column(db.Boolean())
 
 
 class QuestionType(db.Model):
@@ -45,7 +46,7 @@ class Answer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.String(80), unique=True)
     question = db.relationship('Question',
-                               backref=db.backref('posts', lazy='dynamic'))
+                               backref=db.backref('answers', lazy='dynamic'))
 
 class Response(db.Model):
     __tablename__ = 'responses'
